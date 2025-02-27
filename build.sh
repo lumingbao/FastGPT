@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.8.22
+VERSION=usoft-v4.8.22
 
 echo '开始构建Docker镜像...'
 docker build -f ./projects/app/Dockerfile -t registry.cn-shanghai.aliyuncs.com/usoftgs/fastgpt:${VERSION} --platform linux/amd64 . --build-arg name=app

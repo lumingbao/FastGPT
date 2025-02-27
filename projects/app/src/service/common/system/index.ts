@@ -57,7 +57,7 @@ const defaultFeConfigs: FastGPTFeConfigsType = {
   systemPluginCourseUrl: 'https://fael3z0zfze.feishu.cn/wiki/ERZnw9R26iRRG0kXZRec6WL9nwh',
   appTemplateCourse:
     'https://fael3z0zfze.feishu.cn/wiki/CX9wwMGyEi5TL6koiLYcg7U0nWb?fromScene=spaceOverview',
-  systemTitle: '智教甘肃大模型平台',
+  systemTitle: '甘肃优软互联大模型平台',
   concatMd: '',
   limit: {
     exportDatasetLimitMinutes: 0,
