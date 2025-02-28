@@ -42,6 +42,8 @@ import AccountContainer from '@/pageComponents/account/AccountContainer';
 import { serviceSideProps } from '@fastgpt/web/common/system/nextjs';
 import { useRouter } from 'next/router';
 import TeamSelector from '@/pageComponents/account/TeamSelector';
+import { getWorkorderURL } from '@/web/common/workorder/api';
+import { useRequest2 } from '@fastgpt/web/hooks/useRequest';
 
 const StandDetailModal = dynamic(
   () => import('@/pageComponents/account/info/standardDetailModal'),
@@ -232,11 +234,12 @@ const MyInfo = ({ onOpenContact }: { onOpenContact: () => void }) => {
               borderColor={'transparent'}
               transform={'translateX(-11px)'}
               maxLength={20}
-              onBlur={(e) => {
+              onBlur={async (e) => {
                 const val = e.target.value;
                 if (val === userInfo?.team?.memberName) return;
                 try {
-                  putUpdateMemberName(val);
+                  await putUpdateMemberName(val);
+                  initUserInfo();
                 } catch (error) {}
               }}
             />
@@ -580,13 +583,65 @@ const ButtonStyles = {
 };
 const Other = ({ onOpenContact }: { onOpenContact: () => void }) => {
   const { feConfigs } = useSystemStore();
+  const { teamPlanStatus } = useUserStore();
   const { t } = useTranslation();
   const { isPc } = useSystem();
+
+  const { runAsync: onFeedback } = useRequest2(getWorkorderURL, {
+    manual: true,
+    onSuccess(data) {
+      if (data) {
+        window.open(data.redirectUrl);
+      }
+    }
+  });
 
   return (
     <Box>
       <Grid gridGap={4} mt={3}>
+        {/*{feConfigs?.docUrl && (*/}
+        {/*  <Link*/}
+        {/*    href={getDocPath('/docs/intro')}*/}
+        {/*    target="_blank"*/}
+        {/*    textDecoration={'none !important'}*/}
+        {/*    {...ButtonStyles}*/}
+        {/*  >*/}
+        {/*    <MyIcon name={'common/courseLight'} w={'18px'} color={'myGray.600'} />*/}
+        {/*    <Box ml={2} flex={1}>*/}
+        {/*      {t('account_info:help_document')}*/}
+        {/*    </Box>*/}
+        {/*  </Link>*/}
+        {/*)}*/}
 
+        {/*{!isPc &&*/}
+        {/*  feConfigs?.navbarItems*/}
+        {/*    ?.filter((item) => item.isActive)*/}
+        {/*    .map((item) => (*/}
+        {/*      <Flex key={item.id} {...ButtonStyles} onClick={() => window.open(item.url, '_blank')}>*/}
+        {/*        <Avatar src={item.avatar} w={'18px'} />*/}
+        {/*        <Box ml={2} flex={1}>*/}
+        {/*          {item.name}*/}
+        {/*        </Box>*/}
+        {/*      </Flex>*/}
+        {/*    ))}*/}
+        {/*{feConfigs?.concatMd && (*/}
+        {/*  <Flex onClick={onOpenContact} {...ButtonStyles}>*/}
+        {/*    <MyIcon name={'modal/concat'} w={'18px'} color={'myGray.600'} />*/}
+        {/*    <Box ml={2} flex={1}>*/}
+        {/*      {t('account_info:contact_us')}*/}
+        {/*    </Box>*/}
+        {/*  </Flex>*/}
+        {/*)}*/}
+        {/*{feConfigs?.show_workorder &&*/}
+        {/*  teamPlanStatus &&*/}
+        {/*  teamPlanStatus.standard?.currentSubLevel !== StandardSubLevelEnum.free && (*/}
+        {/*    <Flex onClick={onFeedback} {...ButtonStyles}>*/}
+        {/*      <MyIcon name={'feedback'} w={'18px'} color={'myGray.600'} />*/}
+        {/*      <Box ml={2} flex={1}>*/}
+        {/*        {t('common:question_feedback')}*/}
+        {/*      </Box>*/}
+        {/*    </Flex>*/}
+        {/*  )}*/}
       </Grid>
     </Box>
   );
