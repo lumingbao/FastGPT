@@ -92,30 +92,30 @@ const ChatHistorySlider = ({ confirmClearText }: { confirmClearText: string }) =
       borderRight={['', theme.borders.base]}
       whiteSpace={'nowrap'}
     >
-      {isPc && (
-        <MyTooltip label={canRouteToDetail ? t('app:app_detail') : ''} offset={[0, 0]}>
-          <Flex
-            pt={5}
-            pb={2}
-            px={[2, 5]}
-            alignItems={'center'}
-            cursor={canRouteToDetail ? 'pointer' : 'default'}
-            fontSize={'sm'}
-            onClick={() =>
-              canRouteToDetail &&
-              router.push({
-                pathname: '/app/detail',
-                query: { appId }
-              })
-            }
-          >
-            <Avatar src={appAvatar} borderRadius={'md'} />
-            <Box flex={'1 0 0'} w={0} ml={2} fontWeight={'bold'} className={'textEllipsis'}>
-              {appName}
-            </Box>
-          </Flex>
-        </MyTooltip>
-      )}
+      {/*{isPc && (*/}
+      {/*  <MyTooltip label={canRouteToDetail ? t('app:app_detail') : ''} offset={[0, 0]}>*/}
+      {/*    <Flex*/}
+      {/*      pt={5}*/}
+      {/*      pb={2}*/}
+      {/*      px={[2, 5]}*/}
+      {/*      alignItems={'center'}*/}
+      {/*      cursor={canRouteToDetail ? 'pointer' : 'default'}*/}
+      {/*      fontSize={'lg'}*/}
+      {/*      onClick={() =>*/}
+      {/*        canRouteToDetail &&*/}
+      {/*        router.push({*/}
+      {/*          pathname: '/app/detail',*/}
+      {/*          query: { appId }*/}
+      {/*        })*/}
+      {/*      }*/}
+      {/*    >*/}
+      {/*      <Avatar src={appAvatar} borderRadius={'md'} />*/}
+      {/*      <Box flex={'1 0 0'} w={0} ml={2} fontWeight={'bold'} className={'textEllipsis'}>*/}
+      {/*        {appName}*/}
+      {/*      </Box>*/}
+      {/*    </Flex>*/}
+      {/*  </MyTooltip>*/}
+      {/*)}*/}
 
       {/* menu */}
       <Flex
@@ -180,7 +180,7 @@ const ChatHistorySlider = ({ confirmClearText }: { confirmClearText: string }) =
               cursor={'pointer'}
               userSelect={'none'}
               borderRadius={'md'}
-              fontSize={'sm'}
+              fontSize={'md'}
               _hover={{
                 bg: 'myGray.50',
                 '& .more': {
@@ -218,7 +218,7 @@ const ChatHistorySlider = ({ confirmClearText }: { confirmClearText: string }) =
                     className="time"
                     display={'block'}
                     fontWeight={'400'}
-                    fontSize={'mini'}
+                    fontSize={'md'}
                     color={'myGray.500'}
                   >
                     {t(formatTimeToChatTime(item.updateTime) as any).replace('#', ':')}

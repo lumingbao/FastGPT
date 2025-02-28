@@ -150,7 +150,7 @@ const ChatItem = (props: Props) => {
     return colorMap[statusBoxData.status];
   }, [statusBoxData?.status]);
 
-  /* 
+  /*
     1. The interactive node is divided into n dialog boxes.
     2. Auto-complete the last textnode
   */
@@ -247,7 +247,7 @@ const ChatItem = (props: Props) => {
             py={'1.5px'}
             borderRadius="md"
             bg={chatStatusMap.bg}
-            fontSize={'sm'}
+            fontSize={'md'}
           >
             <Box
               className={styles.statusAnimation}

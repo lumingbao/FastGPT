@@ -45,9 +45,9 @@ const ChatHeader = ({
       alignItems={'center'}
       px={[3, 5]}
       minH={['46px', '60px']}
-      borderBottom={'sm'}
+      borderBottom={'md'}
       color={'myGray.900'}
-      fontSize={'sm'}
+      fontSize={'md'}
     >
       {isPc ? (
         <>

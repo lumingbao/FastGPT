@@ -239,7 +239,7 @@ const ChatInput = ({
           color={'myGray.900'}
           isDisabled={isSpeaking}
           value={inputValue}
-          fontSize={['md', 'sm']}
+          fontSize={['md', 'md']}
           onChange={(e) => {
             const textarea = e.target;
             textarea.style.height = textareaMinH;
@@ -288,6 +288,11 @@ const ChatInput = ({
                 e.stopPropagation();
               }
             }
+          }}
+          sx={{
+            '&::placeholder': {
+              fontSize: 'md', // 你可以根据需要调整字体大小
+            },
           }}
         />
         <Flex alignItems={'center'} position={'absolute'} right={[2, 4]} bottom={['10px', '12px']}>

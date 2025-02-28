@@ -10,6 +10,7 @@ export function strIsLink(str?: string) {
 
 /* hash string */
 export const hashStr = (str: string) => {
+  console.log('hashStr', str)
   return crypto.createHash('sha256').update(str).digest('hex');
 };
 
@@ -109,7 +110,7 @@ export const sliceStrStartEnd = (str: string, start: number, end: number) => {
   return `${startContent}${overSize ? `\n\n...[hide ${str.length - start - end} chars]...\n\n` : ''}${endContent}`;
 };
 
-/* 
+/*
   Parse file extension from url
   Test：
   1. https://xxx.com/file.pdf?token=123
