@@ -130,7 +130,8 @@ export const postCreateChannel = (data: CreateChannelProps) =>
     base_url: data.base_url,
     models: data.models,
     model_mapping: data.model_mapping,
-    key: data.key
+    key: data.key,
+    priority: 1
   });
 
 export const putChannelStatus = (id: number, status: ChannelStatusEnum) =>
@@ -146,15 +147,16 @@ export const putChannel = (data: ChannelInfoType) =>
     model_mapping: data.model_mapping,
     key: data.key,
     status: data.status,
-    priority: data.priority
+    priority: data.priority ? Math.max(data.priority, 1) : undefined
   });
 
 export const deleteChannel = (id: number) => DELETE(`/channel/${id}`);
 
 export const getChannelLog = (params: {
+  request_id?: string;
   channel?: string;
   model_name?: string;
-  status?: 'all' | 'success' | 'error';
+  code_type?: 'all' | 'success' | 'error';
   start_timestamp: number;
   end_timestamp: number;
   offset: number;
@@ -164,11 +166,14 @@ export const getChannelLog = (params: {
     logs: ChannelLogListItemType[];
     total: number;
   }>(`/logs/search`, {
-    ...params,
+    request_id: params.request_id,
+    channel: params.channel,
+    model_name: params.model_name,
+    code_type: params.code_type,
+    start_timestamp: params.start_timestamp,
+    end_timestamp: params.end_timestamp,
     p: Math.floor(params.offset / params.pageSize) + 1,
-    per_page: params.pageSize,
-    offset: undefined,
-    pageSize: undefined
+    per_page: params.pageSize
   }).then((res) => {
     return {
       list: res.logs,
